@@ -5,9 +5,6 @@ import 'package:meta/meta.dart';
 /// The basic stream-based [Notifier] contract used by this package
 abstract class Notifier<T> {
   Stream<T> get changes;
-
-  @protected
-  void notifyListeners();
 }
 
 /// Class/mixin that implements a [Notifier] as a [ChangeNotifier], this means listeners are notified of a change
@@ -18,6 +15,18 @@ mixin class ChangeNotifier implements Notifier<void> {
   @override
   Stream<void> get changes => _changes.stream;
 
-  @override
+  @protected
   void notifyListeners() => _changes.add(null);
+}
+
+/// Class/mixin that implements a [Notifier] as a [ValueNotifier], this means listeners are notified of a change and
+/// the new value!
+mixin class ValueNotifier<T> implements Notifier<T> {
+  final _changes = StreamController<T>.broadcast();
+
+  @override
+  Stream<T> get changes => _changes.stream;
+
+  @protected
+  void notifyListeners(T value) => _changes.add(value);
 }
