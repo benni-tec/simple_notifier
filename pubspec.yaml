@@ -1,7 +1,20 @@
 name: universal_notifier
 description: A library for simple notifiers and collections that are notifiers and/or that cascade from children;
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/benni-tec/universal_notifier
+
+platforms:
+  android:
+  ios:
+  linux:
+  macos:
+  web:
+  windows:
+
+topics:
+  - state
+  - notifier
+  - observe
 
 environment:
   sdk: ^3.1.4
