@@ -1,3 +1,7 @@
+## 2.0.2
+- Added phantom argument to notifyListeners to be more compatible with stream listen api
+- Changed collections implementation to use notifyListeners directly
+
 ## 2.0.1
 - Downgraded to `meta: 1.10.0` to be compatible with flutter sdk
 

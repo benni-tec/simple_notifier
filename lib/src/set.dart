@@ -25,13 +25,13 @@ class CascadingSet<E extends Notifier> extends NotifyingSet<E> {
   CascadingSet() : super();
   CascadingSet.from(Iterable<E> iterable) : super.from(iterable) {
     for (final e in this) {
-      _subscriptions[e] = e.changes.listen((_) => notifyListeners());
+      _subscriptions[e] = e.changes.listen(notifyListeners);
     }
   }
 
   @override
   void onAdded(E value) {
-    _subscriptions[value] = value.changes.listen((_) => notifyListeners());
+    _subscriptions[value] = value.changes.listen(notifyListeners);
     super.onAdded(value);
   }
 

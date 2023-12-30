@@ -25,13 +25,13 @@ class CascadingList<E extends Notifier> extends NotifyingList<E> {
   CascadingList();
   CascadingList.from(Iterable<E> iterable) : super.from(iterable) {
     for (final e in this) {
-      _subscriptions[e] = e.changes.listen((_) => notifyListeners());
+      _subscriptions[e] = e.changes.listen(notifyListeners);
     }
   }
 
   @override
   void onAdded(E value) {
-    if (!contains(value)) _subscriptions[value] = value.changes.listen((_) => notifyListeners());
+    if (!contains(value)) _subscriptions[value] = value.changes.listen(notifyListeners);
     super.onAdded(value);
   }
 

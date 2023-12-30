@@ -23,14 +23,14 @@ class CascadingMap<K, V extends Notifier> extends NotifyingMap<K, V> {
   CascadingMap() : super();
   CascadingMap.from(Map<K, V> map) : super.from(map) {
     for (final e in entries) {
-      _subscriptions[e.key] = e.value.changes.listen((_) => notifyListeners());
+      _subscriptions[e.key] = e.value.changes.listen(notifyListeners);
     }
   }
 
   @override
   @mustCallSuper
   void onAdded(MapEntry<K, V> value) {
-    _subscriptions[value.key] = value.value.changes.listen((_) => notifyListeners());
+    _subscriptions[value.key] = value.value.changes.listen(notifyListeners);
     super.onAdded(value);
   }
 

@@ -16,7 +16,7 @@ mixin class ChangeNotifier implements Notifier<void> {
   Stream<void> get changes => _changes.stream;
 
   @protected
-  void notifyListeners() => _changes.add(null);
+  void notifyListeners([void _]) => _changes.add(null);
 }
 
 /// Class/mixin that implements a [Notifier] as a [ValueNotifier], this means listeners are notified of a change and
